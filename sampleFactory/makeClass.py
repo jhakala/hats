@@ -1,3 +1,4 @@
+from pprint import pprint
 
 def pyMakeClass(options, arguments):
   from ROOT import TFile, TTree
@@ -31,9 +32,6 @@ def pyMakeClass(options, arguments):
   else:
     inTree = inFile.Get(options.treeName)
     inTree.MakeClass(options.className)
-  
-
-from pprint import pprint
 
 if __name__ == "__main__":
   from os import path
