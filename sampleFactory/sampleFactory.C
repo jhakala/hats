@@ -58,9 +58,10 @@ void sampleFactory::Loop(std::string mcName, std::string dataName, std::string s
    /**
    * also create some TLorentzVectors for doing dijet arithmetic
    */
-   TLorentzVector jetA  = TLorentzVector();
-   TLorentzVector jetB  = TLorentzVector();
-   TLorentzVector dijet = TLorentzVector();
+   TLorentzVector jetA     = TLorentzVector() ;
+   TLorentzVector jetB     = TLorentzVector() ;
+   TLorentzVector boostedA = TLorentzVector() ;
+   TLorentzVector dijet    = TLorentzVector() ;
 
    /**
    * create a random number generator
@@ -87,9 +88,22 @@ void sampleFactory::Loop(std::string mcName, std::string dataName, std::string s
           cout << "entry " << jentry << " has at invariant mass of two leading jets " << dijet.M() << endl;
           cout << "gaussian at " << dijet.M() << " is: " << TMath::Gaus(dijet.M(), 750, 750*0.05) << endl;
         }
-        if (rand->Uniform(1) < TMath::Gaus(dijet.M(), 750, 750*0.05)) {
+        if (rand->Uniform(1) < TMath::Gaus(dijet.M(), 750, 750*0.05)) { // to make it signal shaped
+          /**
+          * now let's make some variables distinct from the background shape
+          */
+          
+          boostedA.SetPtEtaPhiE(jetAK4_pt->at(0), jetAK4_eta->at(0), jetAK4_phi->at(0), jetAK4_e->at(0));
+          boostedA.Boost(-(dijet.BoostVector()));
+          if ( 
+               rand->Uniform(1) < TMath::Gaus(boostedA.Pz()/boostedA.P(), 0, 0.5)  // sculpt spectrum using cos(theta*)
+            && rand->Uniform(1) < TMath::Gaus(jetA.Eta()/1.4, 0, 1) // 
+            && rand->Uniform(1) < TMath::Gaus(jetB.Eta()/1.4, 0, 1) // make it more central
+            && rand->Uniform(1) < TMath::Gaus(jetB.Et()/jetA.Et(), 1, 0.3) // make the jets more balanced
+          ) {
           sigTree->Fill();   
           if (debug) debugHist->Fill(dijet.M());
+          }
         }
         if (rand->Uniform(1) > 0.1) {
           dataTree->Fill();   
