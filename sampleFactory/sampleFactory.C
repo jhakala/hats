@@ -105,7 +105,7 @@ void sampleFactory::Loop(std::string mcName, std::string dataName, std::string s
           if (debug) debugHist->Fill(dijet.M());
           }
         }
-        if (rand->Uniform(1) > 0.1) {
+        if (rand->Uniform(1) < 0.1) {
           dataTree->Fill();   
         }
       }
