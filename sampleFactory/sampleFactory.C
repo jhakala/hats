@@ -46,7 +46,7 @@ void sampleFactory::Loop(std::string mcName, std::string dataName, std::string s
    * one is the fake data
    * one is the dummy signal
    */
-   bool debug = true;
+   bool debug = false;
    TH1F* debugHist = new TH1F("debugHist", "dijet invariant mass", 200, 0, 1000);
    TFile* debugFile = new TFile("debug.root", "recreate");
 

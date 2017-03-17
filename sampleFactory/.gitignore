@@ -1,0 +1,5 @@
+condorStuff
+*.so
+*.d
+*rdict.pcm
+.nfs*
