@@ -41,6 +41,6 @@ hatsTree.Draw("jetAK4_pt")
 ##
 ## Let's call it the "firstStepMacro"
 
-hatsTree.MakeClass("firstStepMacro")
+hatsTree.MakeClass("hatsTrees")
 
 ## The macro won't do anything for us now, so we need to edit it to compute interesting numbers
