@@ -39,8 +39,12 @@ hatsTree.Draw("jetAK4_pt")
 ## But we'll mostly just C++ classes as a plugin to fill the gaps where python slows us down 
 ## but leverage python for the myriad of tasks where it WILL save us lots of time.
 ##
-## Let's call it the "firstStepMacro"
+## Let's call it "hatsTrees"
 
 hatsTree.MakeClass("hatsTrees")
 
 ## The macro won't do anything for us now, so we need to edit it to compute interesting numbers
+## In this repo there is an unmodified version of what MakeClass gives you
+## You can see what I've added to the c++ class by running (in a shell)
+##  vimdiff firstStepMacro.C hatsTrees.C
+##   vimdiff firstStepMacro.h hatsTrees.h
