@@ -11,7 +11,6 @@ from os.path import isfile, join
 
 ###
 #    HATS comment: 
-# Now we want to create an interface for our class in python
 #  Let's not hardcode anything, instead let's run our class's Loop method by
 #  passing our python interface some options
 #  In case we forget how to use our python interface, we'll write help comments too :-)
