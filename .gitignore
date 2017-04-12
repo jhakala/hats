@@ -3,3 +3,6 @@ condorStuff
 *.d
 *rdict.pcm
 .nfs*
+*.root
+*.log
+nohup.out
